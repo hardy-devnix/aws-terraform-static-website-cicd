@@ -13,6 +13,12 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+<<<<<<< HEAD
+=======
+      TF_VAR_REGION: ${{ secrets.TF_VAR_region }}
+      TF_VAR_BUCKET_NAME:  ${{ secrets.TF_VAR_bucket_name }}
+      TF_VAR_TABLE_NAME: ${{ secrets.TF_VAR_table_name }}
+>>>>>>> 40dbb5e (Change in variables)
 
     defaults:
       run:
@@ -35,7 +41,12 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
+<<<<<<< HEAD
         run: terraform plan -lock=false
         
+=======
+        run: terraform plan
+
+>>>>>>> 40dbb5e (Change in variables)
       - name: Terraform Apply
         run: terraform apply -auto-approve
