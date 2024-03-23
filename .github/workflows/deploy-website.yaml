@@ -38,12 +38,7 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-<<<<<<< HEAD
-        run: terraform plan -lock=false
-        
-=======
         run: terraform plan
 
->>>>>>> 40dbb5e (Change in variables)
       - name: Terraform Apply
         run: terraform apply -auto-approve
