@@ -1,3 +1,4 @@
+
 terraform {
   backend "s3" {
     bucket         = "terraform-state-bucket-hardy"
@@ -6,3 +7,9 @@ terraform {
     dynamodb_table = "terraform_state_locks"
   }
 }
+
+/*
+terraform {
+  backend "local" {}
+}
+*/

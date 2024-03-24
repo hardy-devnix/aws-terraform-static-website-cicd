@@ -15,7 +15,7 @@ module "backend" {
   source = "./modules/remote_backend"
   bucket_name = var.bucket_name
   table_name  = var.table_name
-}
+  }
 
 /* Commented out
 
