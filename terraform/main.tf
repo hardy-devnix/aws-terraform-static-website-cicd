@@ -19,14 +19,13 @@ provider "aws" {
 #  }
 */
 
-/* Commented out
-
 module "dns_acm" {
-  source                                              = "./modules/route53_acm"
-  root_domain                                         = var.root_domain
-  dns_record_ttl                                      = var.dns_record_ttl
+  source         = "./modules/route53_acm"
+  root_domain    = var.root_domain
+  dns_record_ttl = var.dns_record_ttl
 }
 
+/* Commented out
 module "s3_website" {
   source                                              = "./modules/s3_website"
   website_bucket                                      = var.website_bucket
