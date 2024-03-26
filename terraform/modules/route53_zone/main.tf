@@ -8,7 +8,7 @@ resource "aws_route53_zone" "subDomain" {
 }
 
 resource "aws_route53_record" "dev-ns" {
-  zone_id = aws_route53_zone.main.zone_id
+  zone_id = aws_route53_zone.mainDomain.zone_id
   name    = var.subDomain
   type    = "NS"
   ttl     = "30"
