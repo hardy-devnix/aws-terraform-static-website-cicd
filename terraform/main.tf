@@ -19,6 +19,12 @@ provider "aws" {
 #  }
 */
 
+module "dns_zone" {
+  source         = "./modules/route53_zone"
+  root_domain    = var.root_domain
+  subDomain = var.dsubDomain
+}
+
 module "dns_acm" {
   source         = "./modules/route53_acm"
   root_domain    = var.root_domain
