@@ -29,6 +29,8 @@ module "dns_acm" {
   source         = "./modules/route53_acm"
   root_domain    = var.root_domain
   dns_record_ttl = var.dns_record_ttl
+  #route53_acm_depends_on = [module.dns_zone.logging]
+  depends_on = [module.dns_zone]
 }
 
 /* Commented out
