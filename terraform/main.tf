@@ -22,7 +22,7 @@ provider "aws" {
 module "dns_zone" {
   source         = "./modules/route53_zone"
   root_domain    = var.root_domain
-  subDomain = var.dsubDomain
+  subDomain = var.subDomain
 }
 
 module "dns_acm" {
