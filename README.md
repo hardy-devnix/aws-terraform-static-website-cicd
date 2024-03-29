@@ -1,1 +1,1 @@
-# aws-terraform-static-website-cicd
+# aws-terraform-static-website-cicd with ephemeral env
