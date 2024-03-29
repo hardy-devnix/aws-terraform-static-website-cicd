@@ -4,11 +4,22 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    namecheap = {
+      source  = "namecheap/namecheap"
+      version = ">= 2.0.0"
+    }
   }
 }
 
 provider "aws" {
   region = var.region
+}
+
+provider "namecheap" {
+  user_name   = var.nc_api_uname
+  api_user    = var.nc_api_uname
+  api_key     = var.nc_api_key
+  use_sandbox = false
 }
 
 /*
@@ -20,9 +31,11 @@ provider "aws" {
 */
 
 module "dns_zone" {
-  source         = "./modules/route53_zone"
-  root_domain    = var.root_domain
-  subDomain = var.subDomain
+  source       = "./modules/route53_zone"
+  root_domain  = var.root_domain
+  subDomain    = var.subDomain
+  nc_api_uname = var.nc_api_key
+  nc_api_key   = var.nc_api_key
 }
 
 module "dns_acm" {
@@ -31,6 +44,7 @@ module "dns_acm" {
   dns_record_ttl = var.dns_record_ttl
   #route53_acm_depends_on = [module.dns_zone.logging]
   depends_on = [module.dns_zone]
+
 }
 
 /* Commented out
