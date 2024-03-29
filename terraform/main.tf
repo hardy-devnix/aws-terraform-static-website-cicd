@@ -34,7 +34,7 @@ module "dns_zone" {
   source       = "./modules/route53_zone"
   root_domain  = var.root_domain
   subDomain    = var.subDomain
-  nc_api_uname = var.nc_api_key
+  nc_api_uname = var.nc_api_uname
   nc_api_key   = var.nc_api_key
 }
 
