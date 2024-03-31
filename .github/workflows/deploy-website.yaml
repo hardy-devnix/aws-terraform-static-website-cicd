@@ -45,7 +45,7 @@ jobs:
   Sync_S3:
     name: Sync files to S3 Bucket
     needs: Terraform
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@master
