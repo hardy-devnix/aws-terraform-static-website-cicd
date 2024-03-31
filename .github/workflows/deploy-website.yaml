@@ -8,11 +8,13 @@ on:
 jobs:
   terraform:
     name: Deploy Infrastucture
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      TF_VAR_nc_api_uname: ${{ secrets.TF_VAR_nc_api_uname }}
+      TF_VAR_nc_api_key: ${{ secrets.TF_VAR_nc_api_key }}
 
     defaults:
       run:
@@ -39,3 +41,21 @@ jobs:
         
       - name: Terraform Apply
         run: terraform apply -auto-approve
+
+  Sync_S3:
+    name: Sync files to S3 Bucket
+    needs: Terraform
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --delete --exclude '.DS_Store'
+
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_BUCKET: "hardik-yagnik.com"
+          AWS_REGION: "us-east-1"
+          SOURCE_DIR: "./website"

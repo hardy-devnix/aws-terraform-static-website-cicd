@@ -47,24 +47,22 @@ module "dns_acm" {
 
 }
 
-/* Commented out
+
 module "s3_website" {
-  source                                              = "./modules/s3_website"
-  website_bucket                                      = var.website_bucket
-  force_destroy                                       = var.force_destroy
-  versioning_enabled                                  = var.versioning_enabled
-  index_document                                      = var.index_document
-  region                                              = var.region
+  source             = "./modules/s3_website"
+  website_bucket     = var.website_bucket
+  force_destroy      = var.force_destroy
+  versioning_enabled = var.versioning_enabled
+  index_document     = var.index_document
+  region             = var.region
 }
 
 module "cloudfront" {
-  source                                              = "./modules/s3_cloudfront"
-  bucket_regional_domain_name                         = module.s3_website.bucket_regional_domain_name
-  s3_bucket_id                                        = module.s3_website.s3_bucket_id
-  route53_zone_id                                     = module.dns_acm.route53_zone_id
-  ssl_cert_arn                                        = module.dns_acm.ssl_cert_arn
-  index_document                                      = module.s3_website.index_document
-  root_domain                                         = module.dns_acm.root_domain
+  source                      = "./modules/s3_cloudfront"
+  bucket_regional_domain_name = module.s3_website.bucket_regional_domain_name
+  s3_bucket_id                = module.s3_website.s3_bucket_id
+  route53_zone_id             = module.dns_acm.route53_zone_id
+  ssl_cert_arn                = module.dns_acm.ssl_cert_arn
+  index_document              = module.s3_website.index_document
+  root_domain                 = module.dns_acm.root_domain
 }
-
-*/
