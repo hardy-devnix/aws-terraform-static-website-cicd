@@ -7,8 +7,9 @@ terraform {
     dynamodb_table = "terraform_state_locks"
   }
 }
-*/
+
 
 terraform {
   backend "local" {}
 }
+*/
